@@ -1,0 +1,7 @@
+order_id,customer,product,category,quantity,price,city
+O101,Asha,Laptop,Electronics,1,65000,Hyderabad
+O102,Ravi,Mouse,Electronics,3,800,Bengaluru
+O103,Meena,Notebook,Stationery,10,50,Chennai
+O104,Arjun,Keyboard,Electronics,2,1500,Pune
+O105,Kavya,Pen,Stationery,20,10,Hyderabad
+O106,Manoj,Monitor,Electronics,1,12000,Hyderabad
