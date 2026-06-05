@@ -1,0 +1,579 @@
+
+
+
+vs code
+installing python from python.org 
+installing python extension in vs code
+
+
+
+virtual evironment 
+----------------------
+
+different ways of creating virtual environments 
+-------------
+
+using venv library ( default library and most generally used )
+using uv library   ( third party library)
+using virtualenv library ( third party library)
+using poetry library 
+using conda library 
+
+
+using venv library 
+-----------------------
+
+
+step1: creating virtual environment
+-------------------------------------
+python -m venv venv
+
+step2: activate your virtual environment
+----------------------------------------
+
+windows: .\venv\Scripts\activate
+
+
+mac:     source .\venv\bin\activate
+
+
+step3: deacvaite your virtual environment
+------------------------------------------
+deactivate
+
+
+
+
+Everything in python is object 
+** every object contains methods **
+
+
+C programming - data types 
+----------------------------------
+int 
+float
+char
+double 
+long 
+short
+
+
+
+python objects 
+----------------
+number 
+------
+number can be integer or decimal or octal or hexa.
+
+aval = 10
+bval = 34.43
+
+
+
+string 
+--------
+string is defined in single or double or triple quotes
+
+aname = 'python programming'
+bname = "java programming"
+cname = """langchain"""
+dname = """
+first line
+secone line
+third line
+"""
+
+
+""" this 
+is multi line comment
+
+"""
+
+# this is single line comment
+
+
+list ( array in C) ( mutable )
+------
+list contains set of elements.
+Elements can be numbers or strings or any combination.
+
+alist = [10,20,30,40]
+blist = ["java","unix"]
+clist = [23,43.3,"java",[10,20], (30,40)]
+
+
+
+tuple ( immutable or unchangeable or uneditable)
+-------
+tuple contains set of elmenets.
+elements can be numbers or strings or any combination.
+tuple is defined in ().
+** elements inside tuple cannot be modified DIRECTLy **
+
+
+atup = (10,20,30,40)
+btup = ("java","oracle","unix")
+
+
+
+empdb = [['ram',34,BRED3443,838382939],['rita',32,HRERE34,575434343]] # list of lists
+
+
+empdb = [('ram',34,BRED3443,838382939),('rita',32,HRERE34,575434343)] # lsit of tuples
+
+
+
+ 
+
+dictionary  ( json hashmap  hash  items map multimap  treemap mutablemap )
+------------
+dictionary contains elements in key-vaule pairs 
+dictionary is defined in {}.
+
+key can be either number or string to identify the value 
+value can be number or string or list or tuple or dictionary.
+
+indexing : accessing become faster 
+           easy to search 
+
+
+
+objects 
+object - methods
+conditions
+iterations
+builtin functions
+user defined functions 
+
+book = {"chap1":10 , "chap2":20 ,"chap3":30}
+data = {1:2,3:4,5:6}
+
+
+
+
+
+    index 
+    ------
+chap1   10
+chap2   20
+chap3   30
+chap4   40
+
+
+
+
+set ( venn diagrams)
+----
+set is UNORDERED collection of UNIQUE elements of SAME type.
+set is defined in {}.
+
+
+aset = {10,10,20,30,20,20,30}
+
+
+
+
+objects 
+
+object - methods 
+
+conditions , iterations 
+
+builtin functions , user defined functions 
+
+file handling 
+
+libraries- builtin, third party
+
+
+
+myprogram.py 
+--------------
+- regular python program 
+- regular automations/ programming
+
+myprogram.ipynb  ( interactive Python notebook)
+----------------- ̑
+- line by line exeuction 
+- analytics 
+- machine learning
+
+
+
+conditions 
+----------
+simple if 
+if-else 
+if-elif-elif-elif-elif-elif-else 
+
+
+
+
+
+
+
+helo.py
+hello.ipynb 
+
+
+methods
+user defined functions 
+file handling 
+
+
+
+
+
+requirement|task =    core programming       +    libraries   + domain expertise
+                      ( procedural or oop)
+
+
+
+programming  : oop( class,object)
+dba/admin    : procedural
+
+
+
+test automation 
+cloud automation
+network automation
+analytics
+machine learning 
+web development 
+web scraping 
+GUI 
+server automation
+
+
+
+builtin functions 
+-------------------
+print()
+range()
+len()
+type()
+input()
+max()
+min()
+sum()
+id()
+
+
+list()
+tuple()
+int()
+float()
+dict()
+set()
+
+
+How to dipslay all the list of builtin functions ?
+----------------------------------------------------
+print(dir(__builtins__))
+
+
+
+function | definition | block | subroutine | coroutine 
+--------------------------------------------------------
+piece of code written seperately for the reusability purpose.
+
+ways of passing arguments
+--------
+fixed arguments 
+default argumnets 
+keyword arguments 
+variable length arguments
+
+
+
+
+
+task :  write a program to read a employee.csv , clean the dta and write the output to database 
+-------------------------------------------------
+
+def read_file():
+    ##
+def process():
+    ##
+def db_connect():
+    ##
+def insert_records():
+    ##
+def validate():
+    ##
+def close_connect():
+    ##
+
+
+
+
+
+
+
+
+
+
+
+file handling 
+-----------------
+
+csv 
+txt 
+log 
+jpg 
+gif 
+conf 
+json 
+html
+mp3
+mp4
+yaml 
+md 
+zip
+rar 
+tar 
+tar.gz
+xml 
+docx
+pptx
+xlsx 
+pdf 
+
+
+flat files :  txt conf csv json  log  
+
+
+third party files : pdf xlsx docx zip rar 7z 
+
+
+workign with flat files 
+----------------------------
+
+read mode ---> r
+write mode ---> w
+append mode ----> a
+
+
+opening the file 
+---------------------
+
+syntax:  object = open(filename,mode)
+example:  fobj  = open("clients.txt","r")
+
+
+
+
+closing the file 
+---------------
+fobj.close()
+
+
+
+read operation 
+----------------------
+
+- reading the file line by line 
+- fobj.readlines()
+- fobj.read()
+-  using csv library 
+- using pandas library
+
+
+write operation 
+--------------
+- fobj.writelines()
+- fobj.write()
+- using csv library 
+- using pandas library
+
+
+
+C language 
+------------
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<string.h>
+#include<io.h>
+#include<graphics.h>
+#include<stdmanip.h>
+#include<float.h>
+#include<stdlib.h>
+#include<stdmanip.h>
+
+
+python libraries :
+
+
+
+
+There are 2 types of libraries :
+builtin libraries :
+-------------------
+All the builtin libraries that are generally used by everyone are installed with python .
+
+Eg:
+os 
+random 
+sys 
+psutil 
+shutil 
+platform 
+logging 
+zipfile 
+
+base path : C:\Python312\Lib\
+
+third party libraries :
+------------------------
+Depending on the requirement
+- cloud automation
+- test automation 
+- web development 
+- machine learning/analytics/deep learning/genai/agenticai
+
+, developer has to install the third party library
+ from www.pypi.org using pip tool.
+
+base path : C:\Python312\Lib\site-packages
+
+How to we install any library ?
+-----------------------------
+pip install <libraryname>
+
+
+
+If you wnat to install libraries at a time 
+-----------------------------
+
+
+
+requirements.txt
+----------------------
+pymysql
+psutil 
+pandas
+numpy
+
+
+pip install -r requirements.txt
+
+
+
+
+
+
+
+
+python program
+--------------------
+line1
+line2
+line3
+line4
+line5
+for loop
+while loop
+user defined block 
+line10
+line20
+..
+...
+line100
+
+
+
+libraries :
+-----------
+
+builtin libraries 
+
+
+
+third party libraries 
+
+
+
+exception handling 
+---------------------
+
+There are 2 types of errors
+
+1. syntax error 
+
+2. semantic error or runtime errror or logical error 
+Handling the errors that occurs during the run time is known as exception handling.
+
+
+try 
+except 
+else 
+finally 
+raise 
+
+
+
+
+requirement =   core programming  +  libraries + domain 
+                   1. procedural 
+                   2. oop
+
+
+oop concepts   - global principles
+---------------
+
+class 
+object 
+constructors
+abstraction
+inheritance 
+poloymorphism 
+- function overloading 
+- operator overloading
+
+
+
+
+
+class 
+------
+class is a blueprint of the model
+every class contains members ( member functions and member variables )
+
+object
+------
+object is instance of the class 
+
+
+self  ( self is just like this keyword in java)
+----
+self is the instance of the object 
+self will always refer the current object
+
+
+constructor 
+--------------
+constructor is invoked automatically when object is created 
+constructor is generally used to initialize the values.
+constructor in python begins with __init__
+
+
+
+web development
+-----------------
+flask
+django
+bottle
+
+
+
+
+steps 
+---------
+step1:  opening connection 
+step1a: create cursor
+step2: define query ( select insert  update delete )
+step3: execute query 
+step4: fetch results 
+step5: close connection
+
