@@ -1,0 +1,1321 @@
+
+
+https://codeshare.io/G864VJ
+
+
+
+https://nexlab.in	
+
+https://github.com/giridhar276/ericcson05052026.git
+
+
+
+
+
+
+
+Abhishek Patel				duser1-12			TL%@NxLab&May@1x12
+
+
+Abhishek Prasad				duser1-13			TL%@NxLab&May@1x13
+Andrew Meesala				duser1-14			TL%@NxLab&May@1x14
+Anuj Jangra						duser1-15			TL%@NxLab&May@1x15
+Ashok Swarna					duser1-16			TL%@NxLab&May@1x16
+Avik Chattopadhyay		duser1-17			TL%@NxLab&May@1x17
+Badal Singh						duser1-18			TL%@NxLab&May@1x18
+Dharmendra B Kumar		duser1-19			TL%@NxLab&May@1x19
+Hemalatha E						duser1-20			TL%@NxLab&May@1x20
+Kakali Nayak					duser1-21			TL%@NxLab&May@1x21
+Lovely Yadav					duser1-22			TL%@NxLab&May@1x22
+Rashi Agarwal					duser1-23			TL%@NxLab&May@1x23
+Sampath Kumar A				duser1-24			TL%@NxLab&May@1x24
+Sohini Banerjee				duser1-25			TL%@NxLab&May@1x25
+Sudhanshu A						duser1-26			TL%@NxLab&May@1x26
+Sreenivsulu T					duser1-27			TL%@NxLab&May@1x27
+
+
+
+
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+.\venv\Scripts\activate
+
+
+
+
+
+
+
+
+
+
+
+alist = [10,20,30]
+print(alist)
+alist[0] = 100
+print("after changes :" , alist)
+
+
+atup = (10,20,30)
+#atup[0] = 100
+alist = list(atup)  # typecasting : converting from one object to another object
+alist[0] = 1000     # making our changes
+atup = tuple(alist) # reconverting back to tuple
+print("afer changes :",atup)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+name = "python programming"
+
+print(name.upper())     # displaying string in upper
+print(name.isupper())   # validating whehter the string is upper or not
+
+print(name.lower())    # diplaying string in lower
+print(name.islower())  # validating string is lower or not
+
+
+print(name.capitalize())
+
+print(name.title())
+
+print(name.count("p"))
+
+print(name.replace("python","ruby"))
+
+print(name.split(" ")) # it converts to lsit
+
+print(name.endswith("g"))   # True
+print(name.endswith("z"))   # False
+print(name.startswith("p"))
+print(name.startswith("m"))  #False
+
+aname =  " python    "
+check = "programming"
+print(aname)
+print(aname.strip(),check) # will remove whitespaces at both ends
+print(aname.lstrip(),check)
+print(aname.rstrip(),check)
+
+
+
+
+
+
+
+string = "I love {} and {}"
+print(string.format("Hyerabad","bangalore"))
+print(string.format("kolkata","delhi"))
+print(string.format(1,2))
+
+city1 = "hyd"
+city2 = "kolkata"
+
+print(f"I love {city1} and {city2}")
+
+
+
+
+
+# slicing
+#string[start:stop:step] # step is incremental or decremental number
+name = "python programming"
+print(name[0])
+print(name[1])
+print(name[0:4])
+
+print(name[7:10])
+print(name[7:])
+print(name[:4])
+print(name[::])
+print(name[0:18])
+print(name[0:18:1])
+print(name[0:18:2])
+print(name[::])
+print(name[::-1])
+
+
+
+
+
+
+
+
+# conditions
+name = "python"
+# simple if
+if name.islower():
+    print("string is lower")
+    print("inside if")
+    print("still inside if ")
+print("end of if")
+
+# if-else 
+if name.islower():
+    print("String is lower")
+    print("inside if")
+    print("still inside if")
+else:
+    print("string is upper")
+    print("iside else")
+    print("still inside else")
+
+# if-elif-elif-elif-elif-else
+name = input("Enter any string:")
+if name.islower():
+    print("String is lower")
+elif name.isupper():
+    print("String is upper")
+else:
+    print("it is something else")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+#range(start,stop,step) # step is incremental or decremental
+for num in range(1,10):
+    print(num)
+
+for num in range(10,0,-1):
+    print(num)
+
+# displaying all odd numbers
+for val in range(1,50,2):
+    print(val)
+
+# displaying all even numbers
+for val in range(2,50,2):
+    print(val)
+
+name = "python"
+for char in name:
+    print(char)
+
+alist = [10,20,30,40]
+for val in alist:
+    print(val)
+    
+    
+    
+    
+https://github.com/giridhar276/ericcson05052026
+
+
+
+
+
+
+
+
+alist = [12,45,67,32,6,23,3]
+alist.append(100)
+print("After appending :",alist)
+alist.extend([93,74,32])
+print("After extending :",alist)
+getcount = alist.count(12)
+print("12 is repeated for",getcount)
+alist.remove(12) # 12 is the number - we are validating whether 12 is existing or not
+print(alist)
+
+if 120 in alist:
+    alist.remove(120)
+else:
+    print(120,"is not in the list")
+
+#list.pop(index)
+alist.pop(1) # 1 is the index : value at index 1 is removed
+print(alist)
+
+alist.pop()  # if index is not provided then value at last index is removed
+print(alist)
+
+
+alist.sort()
+print("sorting in ascending order:",alist)
+alist.reverse()
+print("reversing the values :",alist)
+
+
+
+
+
+
+
+
+
+
+##### dicitionary #################
+
+d
+
+
+book.popitem()   # will remove last inserted key-value from the dictionary
+print(book)
+
+
+book = {"chap1":10 , "chap2":20}
+newbook = {"chap3":30,"chap4":40}
+
+## combine - two dictionaries
+# megthod1 - we have created new object
+finalbook = { **book, **newbook}
+print(finalbook)   #{"chap1":10 , "chap2":20,"chap3":30,"chap4":40 }
+
+
+# method2 - we are updating existing object only
+book.update(newbook)
+print(book)
+
+
+
+#dict of lists
+book = {"chap1":["rita",100,"UK"] , "chap2":["gita",200,"US"]}
+print(book["chap1"])  #["rita",100,"UK"]
+print(book["chap1"][2])
+
+
+
+
+
+
+#dict of lists
+book = {"chap1":["rita",100,"UK"] , "chap2":["gita",200,"US"]}
+print(book["chap1"])  #["rita",100,"UK"]
+print(book["chap1"][2])
+
+
+if "chap100" in book:  
+    print(book["chap100"])
+else:
+    print("key is not found")
+
+
+alist = [10,20,30]
+if 10 in alist:
+    print("Exists")
+else:
+    print("not found")
+
+name = "python programming"
+if "ram" in name:
+    print("substring found")
+else:
+    print("not found")
+    
+    
+    
+
+
+
+
+##################################
+
+
+################################# dictionary tasks #######################
+
+
+
+
+
+colors = [
+{
+"colors": "red",
+"values": "#f00"
+},
+{
+"colors": "green",
+"values": "#0f0"
+},
+{
+"colors": "blue",
+"values": "#00f"
+},
+{
+"colors": "cyan",
+"values": "#0ff"
+},
+{
+"colors": "magenta",
+"values": "#f0f"
+},
+{
+"colors": "yellow",
+"values": "#ff0"
+},
+{
+"colors": "black",
+"values": "#000"
+}
+]
+
+write a program to display all the colors and its values.
+
+sample output :
+
+red #f00
+green #0f0
+yellow  #ff0
+magenta #f0f
+..
+..
+..
+
+
+
+print(type(colors))
+
+for color in colors:
+    print(color['colors'], color['values'])
+    
+    
+    
+    
+    
+
+
+##################################################################################################
+
+Write a program to display all employee names and their departments.
+
+employees = {
+    "E001": {"name": "Alice", "department": "Finance"},
+    "E002": {"name": "Bob", "department": "IT"},
+    "E003": {"name": "Charlie", "department": "HR"}
+}
+
+
+sample output:
+
+Alice  Finance
+Bob    IT
+
+
+
+for emp in employees.values():
+    print(emp["name"], emp["department"])
+
+
+for empno,emp in employees.items():
+    print(emp["name"], emp["department"])
+
+##################################################################################################
+Write a program to print all product names and prices.
+
+products = [
+    {"id": 101, "name": "Laptop", "price": 75000},
+    {"id": 102, "name": "Mobile", "price": 25000},
+    {"id": 103, "name": "Tablet", "price": 15000}
+]
+
+
+
+for product in products:
+    print(product['name'], product['price'])
+
+
+##################################################################################################
+
+Write a program to print team names and player names.
+
+teams = {
+    "TeamA": [
+        {"name": "Alice", "role": "Batsman"},
+        {"name": "Bob", "role": "Bowler"}
+    ],
+    "TeamB": [
+        {"name": "Charlie", "role": "Allrounder"},
+        {"name": "Dave", "role": "Wicketkeeper"}
+    ]
+}
+
+
+sample output:
+
+TeamA
+-----
+Alice
+Bob
+
+TeamB
+-----
+Charlie
+Dave
+
+
+
+for key,value in teams.items():
+    print(key)
+    print("-----")
+    for player in value:
+        print(player['name'])
+    print()
+    
+    
+
+##################################################################################################
+
+Write a program to deposit 1000 into all customer accounts and display the dictionary
+
+
+customers = {
+    "C001": {"name": "Alice", "balance": 5000},
+    "C002": {"name": "Bob", "balance": 12000},
+    "C003": {"name": "Charlie", "balance": 3000}
+}
+
+
+output:
+{
+    "C001": {"name": "Alice", "balance": 6000},
+    "C002": {"name": "Bob", "balance": 13000},
+    "C003": {"name": "Charlie", "balance": 4000}
+}
+
+
+
+##################################################################################################
+
+write a program to read the below dictionary and display the expected output
+
+info = {
+"id": "0001",
+"type": "donut",
+"name": "Cake",
+"image":
+{
+"url": "images/0001.jpg",
+"width": 200,
+"height": 200
+},
+"thumbnail":
+{
+"url": "images/thumbnails/0001.jpg",
+"width": 32,
+"height": 32
+}
+}
+
+
+sample output:
+
+ID              : 0001
+TYPE            : donut
+NAME            : Cake
+IMAGE URL       :"images/0001.jpg
+IMAGE WIDTH     : 200
+IMAGE HEIGHT    : 200
+THUMBNAIL URL   : "images/thumbnails/0001.jpg"
+THUMBNAIL WIDTH : 32
+THUMBNAIL HEIGHT:  32
+
+
+
+##################################################################################################
+
+# display all the builtin exceptions and funcitonames
+print(dir(__builtins__))
+
+##################################################################################################
+
+
+
+# fixed arguments
+def display(a,b):
+    print(a,b)
+display(10,20)
+
+# default arguments
+def display(a = 0, b = 0, c= 0):
+    print(a,b,c)
+display()
+display(10)
+display(10,20)
+display(10,20,30)
+
+# keyword arguments
+
+def display(b,a,c):
+    print(a,b,c)
+display(c=30,a=10,b=20)
+
+# variable length arguments 
+
+def display(*args):
+    print(type(args))
+    for val in args:
+        print(val)
+display(10,20,30,40,50,56,43,456,5,3,45,5,6,32,3,56,32,3,56,7,43,2,32,43,32,5,32,5,434,46,332,56)
+
+
+##################################################################################################
+### return keyword 
+####################
+
+
+
+# fixed arguments
+def display(a,b):
+    return a + b
+total = display(10,20)
+
+
+def get_details(studentname,studentage):
+    studentname = "Mr." + studentname
+    studentage = studentage + 50
+    return studentname,studentage
+
+name,age = get_details("Giri",20)
+print(name,age)
+
+
+
+
+
+
+
+
+# 1. Add two numbers
+add = lambda a, b: a + b
+print(add(3, 5))  # 8
+
+# 2. Square of a number
+square = lambda x: x ** 2
+print(square(4))  # 16
+
+# 3. Length of a string
+length = lambda s: len(s)
+print(length("python"))  # 6
+
+
+# 4. Multiply three numbers
+mul = lambda a, b, c: a * b * c
+print(mul(2, 3, 4))  # 24
+
+
+# 5. Convert to uppercase
+upper = lambda s: s.upper()
+print(upper("hello"))  # HELLO
+
+
+# 6. Reverse string
+reverse = lambda s: s[::-1]
+print(reverse("lambda"))  # adbmal
+
+
+
+
+
+
+# 1. Max of two numbers
+maximum = lambda a, b: a if a > b else b
+print(maximum(10, 20))  # 20
+
+
+
+
+# 2. Pass or Fail
+result = lambda marks: "Pass" if marks >= 35 else "Fail"
+print(result(30))  # Fail
+
+
+
+
+# 3. Even or Odd
+even_odd = lambda x: "Even" if x % 2 == 0 else "Odd"
+print(even_odd(9))  # Odd
+
+
+
+# 4. Positive, Negative or Zero
+sign = lambda x: "Positive" if x > 0 else "Negative" if x < 0 else "Zero"
+print(sign(-5))  # Negative
+
+
+
+
+# 5. Grade categorization
+grade = lambda m: 'A' if m >= 90 else 'B' if m >= 75 else 'C'
+print(grade(80))  # B
+
+
+# 6. Adult or Minor
+age_check = lambda age: "Adult" if age >= 18 else "Minor"
+print(age_check(17))  # Minor
+
+# 7. Number is multiple of 3
+multiple_of_3 = lambda x: "Yes" if x % 3 == 0 else "No"
+print(multiple_of_3(9))  # Yes
+
+# 8. Leap year check
+leap_year = lambda y: "Leap" if (y % 4 == 0 and y % 100 != 0) or (y % 400 == 0) else "Not Leap"
+print(leap_year(2020))  # Leap
+
+# 9. Compare lengths
+compare_len = lambda a, b: "Equal" if len(a) == len(b) else "Not Equal"
+print(compare_len("hi", "by"))  # Equal
+
+# 10. Password strength
+password_check = lambda pwd: "Strong" if len(pwd) >= 8 else "Weak"
+print(password_check("pass123"))  # Weak
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+alist = [10,20,30,40,50]
+#output: [15,25,35,45,55]
+blist = []
+for val in alist:
+    blist.append( val + 5)
+print(blist)
+
+
+
+
+alist = [10,20,30,40,50]
+
+# map(function,iterable)
+increment = lambda x : x + 5
+print(list(map(increment, alist)))
+
+
+print(dir(__builtins__))
+
+
+#Convert to strings
+nums = [1, 2, 3, 4, 5]
+to_str = list(map(lambda x: str(x), nums))
+print(to_str)  # ['1', '2', '3', '4', '5']
+
+
+#Convert floats to ints
+floats = [2.5, 3.6, 4.1]
+ints = list(map(lambda x: int(x), floats))
+print(ints)  # [2, 3, 4]
+
+
+
+#Uppercase names
+names = ["alice", "bob", "carol"]
+upper_names = list(map(lambda x: x.upper(), names))
+print(upper_names)  # ['ALICE', 'BOB', 'CAROL']
+
+
+
+#Extract domain from email
+emails = ["user1@gmail.com", "user2@yahoo.com"]
+domains = list(map(lambda x: x.split("@")[1], emails))
+print(domains)
+
+
+names = ["Alice", "Bob"]
+greeted = list(map(lambda x: "Mr./Ms. " + x, names))
+print(greeted)
+
+
+
+
+
+#############
+
+
+
+
+# write operation
+# if the file is not existing ... file gets created
+# if the file is already existing.. it overwrites the existing content
+
+fobj = open("clients.txt","w")
+
+fobj.write("tcs\n")
+fobj.write("wipro\n")
+fobj.write("oracle\n")
+
+fobj.write(str(10))
+
+fobj.writelines(["google","microsoft","oracle\n"])
+
+
+for val in range(1,10):
+    fobj.write( str(val) + "\n")
+
+fobj.close()
+
+
+
+
+
+
+
+
+
+
+# context manager
+# if any line begins using 'with' keyword .. it is called as context manager
+# Advantage: file is closed automtically when it comes out of indentation
+
+with open("clients.txt","w") as fobj:
+    print(fobj.closed)  # False
+    fobj.write("tcs\n")
+    fobj.write("wipro\n")
+    fobj.write("oracle\n")
+    fobj.write(str(10))
+    fobj.writelines(["google","microsoft","oracle\n"])
+    for val in range(1,10):
+        fobj.write( str(val) + "\n")
+
+print(fobj.closed)  # True
+
+
+
+
+
+dummpyemp.csv
+--------------------
+ram,30,mumbai 
+rita,25,hyderabad
+sita,30,chennai
+rao,40,bangalore
+
+
+
+
+
+
+
+
+#method1 : reading line by line
+with open("dummyemp.csv","r") as fobj:
+    # will internally check for EOF
+    for line in fobj:
+        print(line.strip())
+
+#method2: reading with readlines()
+with open("dummyemp.csv","r") as fobj:
+    print(fobj.readlines())
+
+#method3 : read using fobj.read() ------------> string
+# not suggested for larger files # this is just like Ctrl + A and Ctrl + C
+with open("dummyemp.csv","r") as fobj:
+    print(fobj.read())
+
+#method4: using csv library
+# each lie will be automatically converted to list
+import csv
+with open("dummyemp.csv","r") as fobj:
+    reader = csv.reader(fobj) # converting fobj to csv understandable object
+    for line in reader:
+        print(line)
+
+# method5: using pandas
+import pandas 
+df = pandas.read_csv("dummpemp.csv")
+print(df)
+
+
+
+
+
+
+https://github.com/giridhar276/ericcson05052026.git
+
+
+
+download Git for Windows/x64 Setup in the below link
+-----------------------------------------------------
+https://git-scm.com/install/windows
+
+
+
+
+requirements.txt
+-------------------
+pymysql
+psutil 
+pandas
+numpy
+
+
+
+
+
+
+.env
+--------
+APP_NAME=testapp
+LOG_LEVEL=DEBUG
+USERNAME=giridhar276@gmail.com
+PASSWORD=mypassword
+
+
+
+
+
+
+
+# method1:
+try:
+    with open("employees111.csv") as file:
+        for line in file:
+            print(line)
+except FileNotFoundError as err:
+    print("The file you are trying to access does not exist. Please check the file name and try again.")
+    print("Error details:", err)
+
+
+
+
+
+#method2
+try:
+    with open("employees111.csv") as file:
+        for line in file:
+            print(line)
+except TypeError as err:
+    print("There is a type error in your code. Please check the data types of your variables and try again.")
+    print("Error details:", err)
+except NameError as err:
+    print("There is a name error in your code. Please check the variable names and try again.")
+    print("Error details:", err)    
+except (IndexError, KeyError) as err:
+    print("There is an index error or key error in your code. Please check the indices and keys you are using and try again.")
+    print("Error details:", err)
+except FileNotFoundError as err:
+    print("The file you are trying to access does not exist. Please check the file name and try again.")
+    print("Error details:", err)
+except Exception as err:
+    print("An unexpected error occurred. Please check your code and try again.")
+    print("Error details:", err)
+
+
+
+
+#merthod3
+try:
+    with open("employees111.csv") as file:
+        for line in file:
+            print(line)
+except Exception as err:
+    print("An unexpected error occurred. Please check your code and try again.")
+    print("Error details:", err)
+    
+    
+    
+    
+    
+
+#merthod3
+try:
+    with open("employees.csv") as file:
+        for line in file:
+        
+            print(line)
+except Exception as err:
+    print("An unexpected error occurred. Please check your code and try again.")
+    print("Error details:", err)
+else:
+    print("File read successfully.")
+finally:
+    print("This block will always execute, regardless of whether an exception occurred or not.")
+
+
+
+
+
+
+
+
+# raise usage
+if 1 < 2:
+    raise Exception("This is an exception")
+
+
+
+
+#### defining a custom exception
+class MyError(Exception):
+    pass
+
+if 1 < 2:
+    raise MyError("This is a custom error")
+    
+    
+    
+
+
+def create_retry_session() -> requests.Session:
+    retry_strategy = Retry(
+        total=3, # retry maximum 3 times in total
+        connect=3, # retry upto 3 times if connection fails
+        read=3,  # retry upto 3 times if server accepted request but response reading failed
+        status=3, # retry upto 3 times for selected HTTP status codes
+        backoff_factor=1, # waiting time between retries
+        status_forcelist=[429, 500, 502, 503, 504], # retry only if the API returns these status codes
+        allowed_methods=["GET", "HEAD", "OPTIONS"],
+        respect_retry_after_header=True,
+    )
+    
+    
+    
+    
+
+
+
+# procedural programming
+print("hello world")
+
+
+
+# using oop 
+ 
+class Demo:
+    def displayName(self):
+        print("hello world")
+    def displayAge(self):
+        print("age is 20")
+    def displayCity(self):
+        print("city is delhi")
+    def displayCountry(self):
+        print("country is india")
+
+obj1 = Demo()           #alist = [10,20]
+obj1.displayName()      #alist.append(30)  
+obj1.displayAge()       #print(alist)  #[10,20,30]
+obj1.displayCity()      #alist.pop()   #[10,20] 
+obj1.displayCountry()   #alist.pop(0) #[20]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Demo:
+    def displayName(self, name):
+        print(name)
+    def displayAge(self,age):
+        print(age)
+    def displayCity(self,city):
+        print(city)
+    def displayCountry(self,country):
+        print(country)
+
+obj1 = Demo()           
+obj1.displayName('rita')     
+obj1.displayAge(23)       
+obj1.displayCity('Hyd')      
+obj1.displayCountry('India')   
+
+
+obj2 = Demo()         
+obj2.displayName('sita')     
+obj2.displayAge(24)       
+obj2.displayCity('Noida')      
+obj2.displayCountry('India')  
+
+
+
+
+
+
+
+
+class Employee:
+    def __init__(self, name, department):
+        self.name = name
+        self.department = department
+
+    def display_info(self):
+        print(self.name)
+        print(self.department)
+
+emp = Employee('Rahul', 'HR')
+emp.display_info()
+
+
+    
+    
+    
+# write a OOP program to demonstrate the use of rest api in python
+
+import requests
+class RestAPI:
+    def __init__(self, url):
+        self.url = url
+
+    def get(self):      
+        self.response = requests.get(self.url)
+
+    def check_response(self):
+        if self.response.status_code == 200:
+            print("API call successful")
+            print("Response data:", self.response.json())
+        else:
+            print("API call failed with status code:", self.response.status_code)
+
+    def displayProducts(self):
+        products = self.response.json()
+        print("Total Products:", len(products))
+        for product in products[:5]:
+            print(f"{product['id']}. {product['title']} - ${product['price']}")
+
+URL = "https://fakestoreapi.com/products"
+api = RestAPI(URL)
+api.get()
+api.check_response()
+api.displayProducts()
+
+
+
+
+
+
+
+
+
+
+
+class CartItem:
+    def __init__(self, product_name, price, quantity):
+        self.product_name = product_name
+        self.price = price
+        self.quantity = quantity
+
+    def total_price(self):
+        return self.price * self.quantity
+
+    def __add__(self, other):
+        return self.total_price() + other.total_price()
+
+
+item1 = CartItem("Laptop Bag", 1200, 2)
+item2 = CartItem("Mouse", 500, 3)
+
+total_bill = item1 + item2
+
+print("Total Bill:", total_bill)
+
+
+
+
+
+
+
+
+
+
+from abc import ABC, abstractmethod
+
+class Payment(ABC):
+    @abstractmethod
+    def pay(self, amount):
+        pass
+
+
+class UPIPayment(Payment):
+    def pay(self, amount):
+        print("Paid through UPI:", amount)
+
+
+class CreditCardPayment(Payment):
+    def pay(self, amount):
+        print("Paid through Credit Card:", amount)
+
+
+class NetBankingPayment(Payment):
+    def pay(self, amount):
+        print("Paid through Net Banking:", amount)
+
+
+payments = [
+    UPIPayment(),
+    CreditCardPayment(),
+    NetBankingPayment()
+]
+
+for payment in payments:
+    payment.pay(1000)
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+################################### frequently used builtin libraries #############################
+
+os         : os level activities
+math       : mathematical operations
+sys        :  sys and python config data
+shutil     : copy,move, rmtree  etc
+urllib     : read the web, downloading the files
+logging    : logging all the events
+smtplib    : sending the mails
+ftplib     : performing ftp operations
+sysconfig  :  sys and python config data
+zipfile    : create/extract the zip files
+rarfile    : create/extract the rar files
+cryptopgraphy : encrypting and decrypting the data or files
+tarfile    : create/extract the tar files
+filecmp    : comparing files or directories
+sqlite3    : python default database
+csv        : reading/writing csv files
+xml        : reading/writing xml files
+calendar   : display month,year calendar info
+datetime   : working with date n time
+time       : working with date n time
+fractions  : working with decimal values
+glob       : display all the files
+heapq      : more of array operations ( getting largest among list )
+subprocess : executing system commands in python (  subprocess.getoutput("ls -ltr")
+pdb        : python debugger
+platform   : platform information
+random     : random operations ( shuffling , random digit ... )
+re         : grep + awk + sed
+socket     : networking programming
+stat       : stats of the file
+statistics : basic statistics
+pathlib	   : Object-oriented file path operations
+time	     : Delays, timestamps, performance checks
+logging	   : Logging for scripts/apps (replace print for real apps)
+argparse	 : Command-line interface (CLI) argument parsing
+configparser : 	Read/write .ini config files
+json	     :Serialize/deserialize JSON (common in APIs)
+uuid	     : Generate unique IDs (useful in files, databases)
+statistics	:Basic stats: mean, median, stdev
+random	    :Random number generation, sampling
+collections	:Specialized containers (defaultdict, Counter, namedtuple)
+traceback	   :Print/format exception tracebacks
+warnings	   :Raise and handle warnings
+
+
+
+execution steps 
+--------------------
+
+
+step1:   display all exisitng databases
+--------------------------------------
+show databases;
+
+
+
+step2: create your own database 
+----------------------------
+create database testdb ;
+
+
+step3: access and use your datbase
+---------------------------------
+use testdb;
+
+
+step4: create table 
+---------------------
+create table customers ( name varchar(100), location varchar(100));
+
+
+step5: inserting records
+-------------------------
+insert into customers values ( 'johnson', 'us');
+insert into customers values('disney','us');
+
+
+display all the records
+--------------------
+select * from customers;
+
+
+
+
+
+
+
+.env
+------------
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=giri@123
+DB_NAME=employee_db
+
+
+
+
+
+
+
+docker link
+--------------
+https://www.docker.com/products/docker-desktop/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pip uninstall transformers tokenizers huggingface-hub safetensors accelerate peft sentence-transformers torch torchvision torchaudio -y
+
+
+
+
+pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cpu
+
+
+pip install transformers==4.41.2 tokenizers==0.19.1 huggingface-hub==0.23.4 safetensors==0.4.3 accelerate==0.30.1
+
+
+
+
+
+
+
+
