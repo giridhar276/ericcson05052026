@@ -1,0 +1,1120 @@
+
+
+DOCKERIZING PYTHON APPS - STEP BY STEP PRACTICE GUIDE
+======================================================
+
+Audience: Beginners learning Docker for Python applications
+Trainer: Giridhar Sripathi
+
+OBJECTIVE
+---------
+By the end of this practice, participants will understand how to:
+
+1. Install and verify Docker
+2. Dockerize a simple Python app
+3. Dockerize a Python app with requirements.txt
+4. Dockerize Flask and FastAPI apps
+5. Use environment variables in Docker
+6. Use .dockerignore
+7. Use Docker Compose
+8. Run, stop, inspect, and remove containers
+
+
+PART 1: INSTALL DOCKER
+======================
+
+STEP 1: Download Docker Desktop
+-------------------------------
+Go to the official Docker Desktop download page:
+
+https://www.docker.com/products/docker-desktop/
+
+Download Docker Desktop based on your operating system:
+
+Windows        -> Docker Desktop for Windows
+Mac Intel      -> Docker Desktop for Mac - Intel Chip
+Mac M1/M2/M3   -> Docker Desktop for Mac - Apple Silicon
+Linux          -> Docker Engine or Docker Desktop for Linux
+
+
+STEP 2: Install Docker Desktop
+------------------------------
+
+For Windows:
+
+1. Double-click the installer.
+2. During installation, keep WSL 2 enabled if prompted.
+3. Restart the system if Docker asks for restart.
+4. Open Docker Desktop.
+5. Wait until Docker Desktop starts successfully.
+
+For Mac:
+
+1. Open the downloaded .dmg file.
+2. Drag Docker into Applications.
+3. Open Docker from Applications.
+4. Wait until Docker Desktop starts successfully.
+
+Expected status:
+
+Docker Desktop is running.
+
+
+STEP 3: Verify Docker Installation
+----------------------------------
+Open Terminal, Command Prompt, or PowerShell and run:
+
+    docker --version
+
+Expected output example:
+
+    Docker version 25.x.x
+
+Then run:
+
+    docker info
+
+If Docker is running correctly, it will show Docker engine details.
+
+Now test Docker using:
+
+    docker run hello-world
+
+Expected output:
+
+    Hello from Docker!
+
+Explanation:
+This command downloads a small test Docker image and runs it inside a container.
+
+
+PART 2: CREATE MAIN TRAINING WORKSPACE
+======================================
+
+Create one main folder for all examples:
+
+    mkdir docker-python-training
+    cd docker-python-training
+
+All examples will be created inside this folder.
+
+
+PART 3: EXAMPLE 1 - SIMPLE PYTHON APP IN DOCKER
+===============================================
+
+STEP 1: Create Project Folder
+-----------------------------
+
+    mkdir 01_simple_python_app
+    cd 01_simple_python_app
+
+
+STEP 2: Create app.py
+---------------------
+Create a file named app.py and add the following code:
+
+    print("Hello Docker, I am learning Python containerization!")
+
+
+STEP 3: Run Normally Without Docker
+-----------------------------------
+Run the Python file normally:
+
+    python app.py
+
+Or, on some systems:
+
+    python3 app.py
+
+Expected output:
+
+    Hello Docker, I am learning Python containerization!
+
+Explanation:
+This runs using Python installed on the local machine.
+
+
+STEP 4: Create Dockerfile
+-------------------------
+Create a file named Dockerfile.
+
+Important:
+The file name should be exactly Dockerfile.
+Do not save it as Dockerfile.txt.
+
+Add the following content:
+
+    FROM python:3.11-slim
+
+    WORKDIR /app
+
+    COPY . .
+
+    CMD ["python", "app.py"]
+
+
+STEP 5: Build Docker Image
+--------------------------
+Run this command inside the project folder:
+
+    docker build -t simple-python-app .
+
+Explanation:
+
+docker build          -> Builds a Docker image
+-t                    -> Gives a name/tag to the image
+simple-python-app     -> Image name
+.                     -> Current folder as build context
+
+
+STEP 6: Check Docker Image
+--------------------------
+Run:
+
+    docker images
+
+You should see an image named:
+
+    simple-python-app
+
+
+STEP 7: Run Docker Container
+----------------------------
+Run:
+
+    docker run simple-python-app
+
+Expected output:
+
+    Hello Docker, I am learning Python containerization!
+
+Explanation:
+Now the Python app is running inside a Docker container.
+
+
+STEP 8: Go Back to Main Folder
+------------------------------
+
+    cd ..
+
+
+PART 4: EXAMPLE 2 - PYTHON APP WITH requirements.txt
+====================================================
+
+STEP 1: Create Folder
+---------------------
+
+    mkdir 02_python_with_requirements
+    cd 02_python_with_requirements
+
+
+STEP 2: Create app.py
+---------------------
+Create app.py and add:
+
+    import requests
+
+    response = requests.get("https://api.github.com", timeout=10)
+
+    print("Status Code:", response.status_code)
+    print("Dockerized Python app successfully called an API")
+
+
+STEP 3: Create requirements.txt
+-------------------------------
+Create requirements.txt and add:
+
+    requests
+
+
+STEP 4: Create Dockerfile
+-------------------------
+Create Dockerfile and add:
+
+    FROM python:3.11-slim
+
+    WORKDIR /app
+
+    COPY requirements.txt .
+
+    RUN pip install --no-cache-dir -r requirements.txt
+
+    COPY . .
+
+    CMD ["python", "app.py"]
+
+
+STEP 5: Build Image
+-------------------
+
+    docker build -t python-requirements-demo .
+
+
+STEP 6: Run Container
+---------------------
+
+    docker run python-requirements-demo
+
+Expected output:
+
+    Status Code: 200
+    Dockerized Python app successfully called an API
+
+Explanation:
+Docker installed the required Python package inside the image using requirements.txt.
+
+
+STEP 7: Go Back
+---------------
+
+    cd ..
+
+
+PART 5: EXAMPLE 3 - FLASK APP IN DOCKER
+=======================================
+
+STEP 1: Create Folder
+---------------------
+
+    mkdir 03_flask_docker_app
+    cd 03_flask_docker_app
+
+
+STEP 2: Create app.py
+---------------------
+Create app.py and add:
+
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def home():
+        return "Hello, Flask app is running inside Docker!"
+
+    @app.route("/health")
+    def health():
+        return {"status": "ok"}
+
+    if __name__ == "__main__":
+        app.run(host="0.0.0.0", port=5000)
+
+Important explanation:
+
+    host="0.0.0.0"
+
+This is required because the Flask app must be accessible from outside the container.
+
+
+STEP 3: Create requirements.txt
+-------------------------------
+Create requirements.txt and add:
+
+    flask
+
+
+STEP 4: Create Dockerfile
+-------------------------
+Create Dockerfile and add:
+
+    FROM python:3.11-slim
+
+    WORKDIR /app
+
+    COPY requirements.txt .
+
+    RUN pip install --no-cache-dir -r requirements.txt
+
+    COPY . .
+
+    EXPOSE 5000
+
+    CMD ["python", "app.py"]
+
+
+STEP 5: Build Image
+-------------------
+
+    docker build -t flask-docker-app .
+
+
+STEP 6: Run Container with Port Mapping
+---------------------------------------
+
+    docker run -p 5000:5000 flask-docker-app
+
+Now open browser:
+
+    http://localhost:5000
+
+Expected browser output:
+
+    Hello, Flask app is running inside Docker!
+
+Open health endpoint:
+
+    http://localhost:5000/health
+
+Expected output:
+
+    {"status":"ok"}
+
+
+STEP 7: Stop the Container
+--------------------------
+In the terminal, press:
+
+    CTRL + C
+
+Explanation:
+Flask was running continuously, so we stopped it manually.
+
+
+STEP 8: Run Container in Background
+-----------------------------------
+
+    docker run -d -p 5000:5000 --name flask-demo-container flask-docker-app
+
+Explanation:
+
+-d                         -> Detached/background mode
+-p 5000:5000               -> Port mapping
+--name                     -> Custom container name
+flask-demo-container       -> Container name
+flask-docker-app           -> Image name
+
+
+STEP 9: Check Running Containers
+--------------------------------
+
+    docker ps
+
+
+STEP 10: View Logs
+------------------
+
+    docker logs flask-demo-container
+
+
+STEP 11: Stop Container
+-----------------------
+
+    docker stop flask-demo-container
+
+
+STEP 12: Remove Container
+-------------------------
+
+    docker rm flask-demo-container
+
+
+STEP 13: Go Back
+----------------
+
+    cd ..
+
+
+PART 6: EXAMPLE 4 - FASTAPI APP IN DOCKER
+=========================================
+
+STEP 1: Create Folder
+---------------------
+
+    mkdir 04_fastapi_docker_app
+    cd 04_fastapi_docker_app
+
+
+STEP 2: Create main.py
+----------------------
+Create main.py and add:
+
+    from fastapi import FastAPI
+
+    app = FastAPI()
+
+    @app.get("/")
+    def home():
+        return {"message": "FastAPI app is running inside Docker"}
+
+    @app.get("/health")
+    def health():
+        return {"status": "ok"}
+
+
+STEP 3: Create requirements.txt
+-------------------------------
+Create requirements.txt and add:
+
+    fastapi
+    uvicorn
+
+
+STEP 4: Create Dockerfile
+-------------------------
+Create Dockerfile and add:
+
+    FROM python:3.11-slim
+
+    WORKDIR /app
+
+    COPY requirements.txt .
+
+    RUN pip install --no-cache-dir -r requirements.txt
+
+    COPY . .
+
+    EXPOSE 8000
+
+    CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+
+STEP 5: Build Image
+-------------------
+
+    docker build -t fastapi-docker-app .
+
+
+STEP 6: Run Container
+---------------------
+
+    docker run -p 8000:8000 fastapi-docker-app
+
+Open browser:
+
+    http://localhost:8000
+
+Expected output:
+
+    {"message":"FastAPI app is running inside Docker"}
+
+Open Swagger documentation:
+
+    http://localhost:8000/docs
+
+Explanation:
+FastAPI automatically provides API documentation using Swagger UI.
+
+Stop with:
+
+    CTRL + C
+
+
+STEP 7: Go Back
+---------------
+
+    cd ..
+
+
+PART 7: EXAMPLE 5 - ENVIRONMENT VARIABLES IN DOCKER
+===================================================
+
+STEP 1: Create Folder
+---------------------
+
+    mkdir 05_environment_variables
+    cd 05_environment_variables
+
+
+STEP 2: Create app.py
+---------------------
+Create app.py and add:
+
+    import os
+
+    app_name = os.getenv("APP_NAME", "Default Python App")
+    environment = os.getenv("APP_ENV", "development")
+
+    print("Application Name:", app_name)
+    print("Environment:", environment)
+
+
+STEP 3: Create Dockerfile
+-------------------------
+Create Dockerfile and add:
+
+    FROM python:3.11-slim
+
+    WORKDIR /app
+
+    COPY . .
+
+    CMD ["python", "app.py"]
+
+
+STEP 4: Build Image
+-------------------
+
+    docker build -t env-demo-app .
+
+
+STEP 5: Run Without Environment Variables
+-----------------------------------------
+
+    docker run env-demo-app
+
+Expected output:
+
+    Application Name: Default Python App
+    Environment: development
+
+
+STEP 6: Run With Environment Variables
+--------------------------------------
+
+    docker run -e APP_NAME="Docker Training App" -e APP_ENV="production" env-demo-app
+
+Expected output:
+
+    Application Name: Docker Training App
+    Environment: production
+
+Explanation:
+Environment variables allow us to pass configuration without changing the code.
+
+
+STEP 7: Go Back
+---------------
+
+    cd ..
+
+
+PART 8: ADD .dockerignore
+=========================
+
+.dockerignore is similar to .gitignore.
+It prevents unwanted files from going into the Docker image.
+
+Create a file named .dockerignore and add:
+
+    __pycache__
+    *.pyc
+    .env
+    .git
+    .gitignore
+    venv
+    .DS_Store
+    .idea
+    .vscode
+
+Why .dockerignore is important:
+
+1. Keeps Docker image smaller
+2. Avoids copying secrets
+3. Avoids copying virtual environment
+4. Makes Docker build faster
+
+Ask participants to add .dockerignore in every project folder.
+
+
+PART 9: DOCKER COMPOSE EXAMPLE
+==============================
+
+Docker Compose is useful when we want to manage containers using a YAML file.
+
+
+STEP 1: Create Folder
+---------------------
+
+    mkdir 06_docker_compose_flask
+    cd 06_docker_compose_flask
+
+
+STEP 2: Create app.py
+---------------------
+Create app.py and add:
+
+    from flask import Flask
+    import os
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def home():
+        app_env = os.getenv("APP_ENV", "development")
+        return f"Flask app running with Docker Compose. Environment: {app_env}"
+
+    @app.route("/health")
+    def health():
+        return {"status": "ok"}
+
+    if __name__ == "__main__":
+        app.run(host="0.0.0.0", port=5000)
+
+
+STEP 3: Create requirements.txt
+-------------------------------
+Create requirements.txt and add:
+
+    flask
+
+
+STEP 4: Create Dockerfile
+-------------------------
+Create Dockerfile and add:
+
+    FROM python:3.11-slim
+
+    WORKDIR /app
+
+    COPY requirements.txt .
+
+    RUN pip install --no-cache-dir -r requirements.txt
+
+    COPY . .
+
+    EXPOSE 5000
+
+    CMD ["python", "app.py"]
+
+
+STEP 5: Create docker-compose.yml
+---------------------------------
+Create docker-compose.yml and add:
+
+    version: "3.9"
+
+    services:
+      flask-app:
+        build: .
+        container_name: flask-compose-container
+        ports:
+          - "5000:5000"
+        environment:
+          - APP_ENV=compose-development
+
+
+STEP 6: Run Using Docker Compose
+--------------------------------
+
+    docker compose up
+
+Open browser:
+
+    http://localhost:5000
+
+Expected output:
+
+    Flask app running with Docker Compose. Environment: compose-development
+
+
+STEP 7: Stop Compose
+--------------------
+Press:
+
+    CTRL + C
+
+Then run:
+
+    docker compose down
+
+
+STEP 8: Run Compose in Background
+---------------------------------
+
+    docker compose up -d
+
+Check container:
+
+    docker ps
+
+Stop and remove:
+
+    docker compose down
+
+
+PART 10: USEFUL DOCKER COMMANDS
+===============================
+
+Check Docker version:
+
+    docker --version
+
+Check Docker system information:
+
+    docker info
+
+List Docker images:
+
+    docker images
+
+List running containers:
+
+    docker ps
+
+List all containers:
+
+    docker ps -a
+
+Stop a container:
+
+    docker stop container_name_or_id
+
+Remove a container:
+
+    docker rm container_name_or_id
+
+Remove an image:
+
+    docker rmi image_name
+
+View container logs:
+
+    docker logs container_name_or_id
+
+Run container in background:
+
+    docker run -d image_name
+
+Run container with custom name:
+
+    docker run --name my-container image_name
+
+Run container with port mapping:
+
+    docker run -p 5000:5000 image_name
+
+Run container with environment variable:
+
+    docker run -e APP_ENV=production image_name
+
+
+PART 11: RECOMMENDED TRAINING SEQUENCE FOR AUDIENCE
+===================================================
+
+DEMO 1: Docker Installation Verification
+----------------------------------------
+Commands:
+
+    docker --version
+    docker run hello-world
+
+Concept:
+This confirms Docker is installed and working.
+
+
+DEMO 2: Simple Python App
+-------------------------
+Files:
+
+    app.py
+    Dockerfile
+
+Commands:
+
+    docker build -t simple-python-app .
+    docker run simple-python-app
+
+Concepts covered:
+
+    Dockerfile
+    Docker Image
+    Docker Container
+    CMD
+
+
+DEMO 3: Python App with Dependencies
+------------------------------------
+Files:
+
+    app.py
+    requirements.txt
+    Dockerfile
+
+Commands:
+
+    docker build -t python-requirements-demo .
+    docker run python-requirements-demo
+
+Concepts covered:
+
+    requirements.txt
+    RUN pip install
+    Docker layers
+
+
+DEMO 4: Flask App
+-----------------
+Commands:
+
+    docker build -t flask-docker-app .
+    docker run -p 5000:5000 flask-docker-app
+
+Concepts covered:
+
+    EXPOSE
+    Port mapping
+    Web app inside container
+
+
+DEMO 5: FastAPI App
+-------------------
+Commands:
+
+    docker build -t fastapi-docker-app .
+    docker run -p 8000:8000 fastapi-docker-app
+
+Concepts covered:
+
+    API containerization
+    Uvicorn
+    Swagger docs
+
+
+DEMO 6: Environment Variables
+-----------------------------
+Commands:
+
+    docker build -t env-demo-app .
+    docker run env-demo-app
+    docker run -e APP_NAME="Training App" -e APP_ENV="production" env-demo-app
+
+Concepts covered:
+
+    Configuration without code change
+
+
+DEMO 7: Docker Compose
+----------------------
+Commands:
+
+    docker compose up
+    docker compose down
+
+Concepts covered:
+
+    Compose file
+    Service definition
+    Port mapping in YAML
+    Environment variables in YAML
+
+
+PART 12: TRAINER NOTES
+======================
+
+OPENING EXPLANATION
+-------------------
+Say:
+
+Today we are going to learn how to Dockerize Python applications from scratch.
+Docker helps us package our Python code, dependencies, runtime, and configuration
+into a single image. This image can run consistently on any system where Docker
+is installed.
+
+
+EXPLAIN THE MAIN PROBLEM
+------------------------
+Say:
+
+Without Docker, we install Python, create a virtual environment, install packages,
+set environment variables, and then run the app. But on another machine, the
+Python version or package version may be different. Docker solves this by
+packaging the app and its environment together.
+
+
+EXPLAIN Dockerfile -> Image -> Container
+----------------------------------------
+Use this flow:
+
+    Dockerfile -> Docker Image -> Docker Container
+
+Explanation:
+
+    Dockerfile = Instructions
+    Image      = Packaged application
+    Container  = Running application
+
+Analogy:
+
+    Dockerfile = Recipe
+    Image      = Prepared food package
+    Container  = Food being served
+
+
+EXPLAIN WHY requirements.txt IS IMPORTANT
+-----------------------------------------
+Say:
+
+In Python projects, dependencies are usually stored in requirements.txt.
+Docker uses this file to install the same dependencies inside the container.
+
+
+EXPLAIN WHY host="0.0.0.0" IS NEEDED
+-------------------------------------
+Say:
+
+In Flask and FastAPI apps, if we use localhost or 127.0.0.1 inside the container,
+the app may only be available inside the container. To access it from our browser,
+we use 0.0.0.0.
+
+
+EXPLAIN PORT MAPPING
+--------------------
+Use this command:
+
+    docker run -p 5000:5000 flask-docker-app
+
+Say:
+
+    First 5000  = Port on my laptop
+    Second 5000 = Port inside the container
+
+Another example:
+
+    docker run -p 8080:5000 flask-docker-app
+
+Then browser URL becomes:
+
+    http://localhost:8080
+
+
+EXPLAIN .dockerignore
+---------------------
+Say:
+
+We should not copy unnecessary files into the Docker image. Files like virtual
+environments, cache files, .git, and .env should usually be ignored.
+
+
+EXPLAIN DOCKER COMPOSE
+----------------------
+Say:
+
+Docker Compose helps us manage containers using a YAML file. Instead of typing a
+long docker run command every time, we define services, ports, and environment
+variables inside docker-compose.yml.
+
+
+PART 13: COMMON ERRORS AND FIXES
+================================
+
+ERROR 1: docker command not found
+---------------------------------
+Problem:
+
+    docker: command not found
+
+Solution:
+
+Docker is not installed or terminal was opened before Docker installation.
+Restart terminal or reinstall Docker Desktop.
+
+
+ERROR 2: Docker daemon not running
+----------------------------------
+Problem:
+
+    Cannot connect to the Docker daemon
+
+Solution:
+
+Open Docker Desktop and wait until it says Docker is running.
+
+
+ERROR 3: Port already in use
+----------------------------
+Problem:
+
+    Bind for 0.0.0.0:5000 failed: port is already allocated
+
+Solution 1:
+Stop old container:
+
+    docker ps
+    docker stop container_id
+
+Solution 2:
+Use another host port:
+
+    docker run -p 8080:5000 flask-docker-app
+
+Then open:
+
+    http://localhost:8080
+
+
+ERROR 4: Dockerfile saved as .txt
+---------------------------------
+Problem:
+
+    failed to read dockerfile
+
+Solution:
+
+Make sure the file name is exactly:
+
+    Dockerfile
+
+Not:
+
+    Dockerfile.txt
+
+
+ERROR 5: Flask app not opening in browser
+-----------------------------------------
+Check this line:
+
+    app.run(host="0.0.0.0", port=5000)
+
+Do not use:
+
+    app.run(host="127.0.0.1", port=5000)
+
+
+ERROR 6: Module not found
+-------------------------
+Problem:
+
+    ModuleNotFoundError: No module named 'flask'
+
+Solution:
+Check requirements.txt:
+
+    flask
+
+Then rebuild:
+
+    docker build -t flask-docker-app .
+
+
+PART 14: FINAL HANDS-ON TASK FOR PARTICIPANTS
+=============================================
+
+TASK
+----
+Create a Dockerized Python Flask app with three routes:
+
+    /        -> Returns welcome message
+    /about   -> Returns your name and training topic
+    /health  -> Returns {"status": "running"}
+
+
+EXPECTED FILES
+--------------
+
+    app.py
+    requirements.txt
+    Dockerfile
+    .dockerignore
+
+
+EXPECTED COMMANDS
+-----------------
+
+    docker build -t participant-flask-app .
+    docker run -p 5000:5000 participant-flask-app
+
+
+EXPECTED URLS
+-------------
+
+    http://localhost:5000
+    http://localhost:5000/about
+    http://localhost:5000/health
+
+
+
+Final one-line summary:
+
+Dockerizing a Python app means packaging Python code, dependencies, runtime,
+and configuration into an image that can run consistently anywhere.
+
